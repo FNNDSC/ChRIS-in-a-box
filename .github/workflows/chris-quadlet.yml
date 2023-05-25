@@ -130,12 +130,11 @@ jobs:
       - name: Do a reload as quadlet files are copied for Chris
         run:  sudo systemctl daemon-reload
         
-      - name: Start Database for Chris
-        run: sudo systemctl start db
-        
-      - name: Verify status of Db for Chris
-        run: sudo systemctl status db.service
-      
+      - name: Start Database for Chris & Verify status of Db for Chris
+        run: |
+           sudo systemctl start db
+           sudo systemctl status db.service
+
       - name: Start Swift for Chris
         run: sudo systemctl start swift
         
