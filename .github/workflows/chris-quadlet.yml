@@ -105,11 +105,10 @@ jobs:
         
       - name: Check Podman Version
         run: podman --version
-        
-        
-      - name: Copy files
+              
+      - name: Copy Quadlet files for Chris
         run: |
-          cp /quadlet/chris/* /etc/containers/systemd
+          cp -r quadlet/chris/* /etc/containers/systemd
           cd /etc/containers/systemd
 
       - name: Start services
