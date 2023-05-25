@@ -105,3 +105,22 @@ jobs:
         
       - name: Check Podman Version
         run: podman --version
+        
+        
+      - name: Copy files
+        run: |
+          cp /quadlet/chris/* /etc/containers/systemd
+          cd /etc/containers/systemd
+
+      - name: Start services
+        run: |
+          sudo systemctl start db
+          sudo systemctl start swift
+          sudo systemctl start rabbitmq
+          sudo systemctl start chrisui
+          sudo systemctl start pfcon-pman
+          sudo systemctl daemon-reload
+
+      - name: Check podman containers
+        run: |
+          sudo podman ps -a
