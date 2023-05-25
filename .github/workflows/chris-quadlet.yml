@@ -108,7 +108,7 @@ jobs:
               
       - name: Copy Quadlet files for Chris
         run: |
-          mkdir -p /etc/containers/systemd
+          sudo mkdir -p /etc/containers/systemd
           cd /etc/containers/systemd
           curl -LJO https://github.com/FNNDSC/ChRIS-in-a-box/archive/main.zip
           unzip main.zip
