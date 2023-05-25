@@ -113,25 +113,63 @@ jobs:
           sudo curl -LJO https://github.com/FNNDSC/ChRIS-in-a-box/archive/main.zip
           sudo unzip ChRIS-in-a-box-main.zip
           sudo cp -r ChRIS-in-a-box-main/quadlet/chris/* .
-          pwd
-          ls -lart
           sudo rm -rf ChRIS-in-a-box-main main.zip
           
-
-      - name: Start services
-        run: |
-          cd /etc/containers/systemd
-          ls -lart
-          sudo systemctl daemon-reload
-          sudo podman network create
-          sudo podman network create systemd-chris
-          sudo systemctl start db
-          sudo systemctl start swift
-          sudo systemctl start rabbitmq
-          sudo systemctl start chrisui
-          sudo systemctl start pfcon-pman
+      - name: List services in systemd
+        run: ls -lart /etc/containers/systemd
           
-
-      - name: Check podman containers
+      - name: Run status check for podman and podman socket
         run: |
-          sudo podman ps -a
+          systemctl status podman
+          systemctl status podman.socket       
+          
+      - name: Create CNI
+        run: podman network create
+        
+      - name: Create Chris Network
+        run: podman network create systemd-chris
+    
+      - name: Change Directory to systemd where Quadlet files are present for Chris
+        run: cd /etc/containers/systemd
+          
+      - name: Do a reload as quadlet files are copied for Chris
+        run:  sudo systemctl daemon-reload
+        
+      - name: Start Database for Chris
+        run: sudo systemctl start db
+        
+      - name: Verify status of Db for Chris
+        run: sudo systemctl status db.service
+      
+      - name: Start Swift for Chris
+        run: sudo systemctl start swift
+        
+      - name: Verify status of Swift service for Chris
+        run: sudo systemctl status swift 
+      
+      - name: Start Rabbit Mq
+        run: sudo systemctl start rabbitmq
+        
+      - name: Verify status of RabbitMQ service for Chris
+        run: sudo systemctl status rabbitmq
+        
+      - name: Start CUBE
+        run: sudo systemctl start cube
+        
+      - name: Verify status of CUBE service for Chris
+        run: sudo systemctl status cube
+        
+      - name: Start Chris UI
+        run: sudo systemctl start chrisui
+        
+      - name: Verify status of Chris UI service for Chris
+        run: sudo systemctl status chrisui
+  
+      - name: Start Pfcon-Pman services for Chris
+        run: sudo systemctl start pfcon-pman
+        
+      - name: Verify status of Pfcon-Pman services for Chris
+        run: sudo systemctl status pfcon-pman
+
+      - name: Check Podan Container Status
+        run: sudo podman ps -a
