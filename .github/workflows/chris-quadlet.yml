@@ -97,7 +97,7 @@ jobs:
       - name: Clone Podman Repository
         run: git clone https://github.com/containers/podman/
               
-      - name: Change to Podman Directory & Build and Install Podman
+      - name: Change to Podman Directory, Build and Install Podman
         run: |
           cd podman
           make BUILDTAGS="systemd"
