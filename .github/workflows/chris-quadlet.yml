@@ -109,11 +109,11 @@ jobs:
       - name: Copy Quadlet files for Chris
         run: |
           sudo mkdir -p /etc/containers/systemd
-          cd /etc/containers/systemd
-          curl -LJO https://github.com/FNNDSC/ChRIS-in-a-box/archive/main.zip
-          unzip main.zip
-          cp -r ChRIS-in-a-box-main/quadlet/chris/* .
-          rm -rf ChRIS-in-a-box-main main.zip
+          sudo cd /etc/containers/systemd
+          sudo curl -LJO https://github.com/FNNDSC/ChRIS-in-a-box/archive/main.zip
+          sudo unzip main.zip
+          sudo cp -r ChRIS-in-a-box-main/quadlet/chris/* .
+          sudo rm -rf ChRIS-in-a-box-main main.zip
 
       - name: Start services
         run: |
