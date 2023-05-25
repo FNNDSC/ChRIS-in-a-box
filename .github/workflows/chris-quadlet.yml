@@ -113,7 +113,8 @@ jobs:
           sudo curl -LJO https://github.com/FNNDSC/ChRIS-in-a-box/archive/main.zip
           sudo unzip ChRIS-in-a-box-main.zip
           sudo cp -r ChRIS-in-a-box-main/quadlet/chris/* .
-          cd quadlet/chris/
+          pwd
+          ls -lart
           sudo rm -rf ChRIS-in-a-box-main main.zip
 
       - name: Start services
