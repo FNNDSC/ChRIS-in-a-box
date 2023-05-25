@@ -123,6 +123,7 @@ jobs:
           cd /etc/containers/systemd
           ls -lart
           sudo systemctl daemon-reload
+          sudo podman network create
           sudo podman network create systemd-chris
           sudo systemctl start db
           sudo systemctl start swift
