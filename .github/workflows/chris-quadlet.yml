@@ -116,12 +116,7 @@ jobs:
           sudo rm -rf ChRIS-in-a-box-main main.zip
           
       - name: List services in systemd
-        run: ls -lart /etc/containers/systemd
-          
-      - name: Run status check for podman and podman socket
-        run: |
-          systemctl status podman
-          systemctl status podman.socket       
+        run: ls -lart /etc/containers/systemd    
           
       - name: Create CNI
         run: podman network create
