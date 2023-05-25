@@ -119,6 +119,7 @@ jobs:
 
       - name: Start services
         run: |
+          cd /etc/containers/systemd
           sudo systemctl start db
           sudo systemctl start swift
           sudo systemctl start rabbitmq
