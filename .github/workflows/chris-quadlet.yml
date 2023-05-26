@@ -137,8 +137,8 @@ jobs:
         
       - name: Start Database for Chris & Verify status of Db for Chris
         run: |
-           sudo systemctl start db
-           sudo systemctl status db.service
+           sudo /usr/bin/systemctl start db
+           sudo /usr/bin/systemctl status db.service
 
       - name: Start Swift for Chris
         run: sudo systemctl start swift
