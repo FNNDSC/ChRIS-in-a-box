@@ -103,8 +103,10 @@ jobs:
           make BUILDTAGS="systemd"
           sudo make install
           cd bin
+          ./podman --version
           sudo cp * /usr/bin/
           sudo cp * /usr/local/bin/
+          
           
       - name: Check Podman Version
         run: podman --version
