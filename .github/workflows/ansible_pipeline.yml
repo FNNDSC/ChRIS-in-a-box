@@ -3,11 +3,11 @@ name: ChRIS-in-a-box Playbook
 on:
   push:
     branches:
-      - test  # Change this to the branch you want to trigger the pipeline on
+      - ansible  # Change this to the branch you want to trigger the pipeline on
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
+    runs-on: self-hosted  # Use the latest version of Ubuntu as the runner
 
     steps:
       - name: Remove existing Podman from the runner
