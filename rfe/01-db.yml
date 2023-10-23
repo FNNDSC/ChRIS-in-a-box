@@ -1,0 +1,49 @@
+---
+
+apiVersion: apps/v1
+
+kind: Deployment
+metadata:
+  name: minichris-postgres
+  labels:
+    app.kubernetes.io/name: minichris-db
+    app.kubernetes.io/component: database
+    app.kubernetes.io/part-of: miniChRIS
+  annotations:
+    kubernetes.io/description: "Database for ChRIS"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: minichris-db
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: minichris-db
+    spec:
+      containers:
+        - name: postgres
+          image: docker.io/library/postgres:16
+          imagePullPolicy: Never
+          envFrom:
+            - configMapRef:
+                name: minichris-db-config
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: minichris-db-data
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minichris-db-data
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 128Mi
