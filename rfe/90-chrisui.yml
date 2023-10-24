@@ -30,6 +30,6 @@ spec:
             hostPort: 8020
           env:
             - name: REACT_APP_CHRIS_UI_URL
-              value: http://192.168.1.129/:8000/api/v1/
+              value: http://localhost:8000/api/v1/
             - name: REACT_APP_PFDCM_URL
-              value: http://192.168.1.129/:4005/
+              value: http://localhost:4005/
