@@ -40,14 +40,14 @@ spec:
       initContainers:
         - name: db-ready
           image: docker.io/library/postgres:16
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           command:
             - /bin/sh
             - -c
             - until pg_isready -U chris -h minichris-postgres-pod -p 5432; do sleep 1; done
         - name: migratedb
           image: ghcr.io/fnndsc/cube:5.0.0
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           command: ["python", "manage.py", "migrate", "--noinput"]
           envFrom:
             - configMapRef:
@@ -60,7 +60,7 @@ spec:
       containers:
         - name: server
           image: ghcr.io/fnndsc/cube:5.0.0
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - name: http
               containerPort: 8000
@@ -75,7 +75,7 @@ spec:
 
         - name: cube-worker
           image: ghcr.io/fnndsc/cube:5.0.0
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           command: ["celery", "-A", "core", "worker", "-c", "4", "-l", "info", "-Q", "main1,main2"]
           envFrom:
             - configMapRef:
@@ -88,7 +88,7 @@ spec:
 
         - name: cube-worker-periodic
           image: ghcr.io/fnndsc/cube:5.0.0
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           command: ["celery", "-A", "core", "worker", "-c", "2", "-l", "info", "-Q", "periodic"]
           envFrom:
             - configMapRef:
@@ -101,7 +101,7 @@ spec:
 
         - name: cube-celery-beat
           image: ghcr.io/fnndsc/cube:5.0.0
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           command: ["celery", "-A", "core", "beat", "-l", "info", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler"]
           envFrom:
             - configMapRef:

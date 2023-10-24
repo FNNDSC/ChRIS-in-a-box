@@ -26,7 +26,7 @@ spec:
       containers:
         - name: pfcon
           image: ghcr.io/fnndsc/pfcon:5.2.2
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - name: pfcon
               containerPort: 5005
@@ -51,7 +51,7 @@ spec:
 
         - name: pman
           image: ghcr.io/fnndsc/pman:6.0.1
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - name: pman
               containerPort: 5010

@@ -23,7 +23,7 @@ spec:
       containers:
         - name: rabbitmq
           image: docker.io/library/rabbitmq:3
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - name: amqp
               containerPort: 5672

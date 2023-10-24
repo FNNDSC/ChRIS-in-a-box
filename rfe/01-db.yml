@@ -24,7 +24,7 @@ spec:
       containers:
         - name: postgres
           image: docker.io/library/postgres:16
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
                 name: minichris-db-config

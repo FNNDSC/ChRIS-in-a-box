@@ -23,7 +23,7 @@ spec:
       containers:
         - name: chrisui
           image: ghcr.io/fnndsc/chris_ui:20231003.270-01f1a863
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           args: ["sirv", "--host", "--single"]
           ports:
           - containerPort: 3000

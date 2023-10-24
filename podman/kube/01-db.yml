@@ -24,7 +24,8 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: docker.io/library/postgres:13
+          image: docker.io/library/postgres:16
+
           envFrom:
             - configMapRef:
                 name: minichris-db-config
