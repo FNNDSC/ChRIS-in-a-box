@@ -6,10 +6,9 @@ Requires=podman.service
 After=NetworkManager-wait-online.service
 Requires=NetworkManager-wait-online.service
 
-Network=chris.network
-
 [Kube]
 Yaml=minichris-aio.yml
+Network=chris.network
 
 [Install]
 # Start by default on boot
