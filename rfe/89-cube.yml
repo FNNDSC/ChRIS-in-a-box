@@ -57,6 +57,39 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: file-storage
+        - name: create-super-user
+          image: ghcr.io/fnndsc/cube:5.0.0
+          imagePullPolicy: IfNotPresent
+          command: 
+          - python
+          - manage.py
+          - shell
+          - -c
+          - |
+            import os
+            from django.contrib.auth.models import User
+
+            user_config = {
+                'username': "chboxadmin",
+                'password': "changeme",
+                'email': "chbox@redhat.com"
+            }
+
+            if (existing_user := User.objects.filter(username=user_config['username']).first()) is not None:
+                existing_user.set_password(user_config['password'])
+                existing_user.save()
+                print(f'Updated password for user "{existing_user.username}"')
+            else:
+                created_user = User.objects.create_superuser(**user_config)
+                print(f'Created superuser "{created_user.username}"')
+          envFrom:
+            - configMapRef:
+                name: minichris-cube-config
+            - configMapRef:
+                name: minichris-db-config
+          volumeMounts:
+            - mountPath: /data
+              name: file-storage
       containers:
         - name: server
           image: ghcr.io/fnndsc/cube:5.0.0
