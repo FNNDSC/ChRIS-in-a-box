@@ -144,6 +144,7 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: file-storage
+              
         - name: chrisui
           image: ghcr.io/fnndsc/chris_ui:20231003.270-01f1a863
           imagePullPolicy: IfNotPresent
