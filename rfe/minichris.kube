@@ -8,7 +8,6 @@ Requires=NetworkManager-wait-online.service
 
 [Kube]
 Yaml=minichris-aio.yml
-Network=podman
 
 [Install]
 # Start by default on boot
