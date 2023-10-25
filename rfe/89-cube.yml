@@ -154,9 +154,9 @@ spec:
             hostPort: 8020
           env:
             - name: REACT_APP_CHRIS_UI_URL
-              value: http://localhost:8000/api/v1/
+              value: http://chbox-edge:8000/api/v1/
             - name: REACT_APP_PFDCM_URL
-              value: http://localhost:4005/
+              value: http://chbox-edge:4005/
       volumes:
         - name: file-storage
           persistentVolumeClaim:
