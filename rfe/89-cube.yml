@@ -157,10 +157,23 @@ spec:
               value: http://localhost:8000/api/v1/
             - name: REACT_APP_PFDCM_URL
               value: http://localhost:4005/
+
+        - name: postgres
+          image: docker.io/library/postgres:16
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: minichris-db-config
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
       volumes:
         - name: file-storage
           persistentVolumeClaim:
             claimName: minichris-cube-files
+        - name: data
+          persistentVolumeClaim:
+            claimName: minichris-db-data
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -172,6 +185,17 @@ spec:
   resources:
     requests:
       storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minichris-db-data
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 128Mi
 ---
 
 
