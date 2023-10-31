@@ -4,6 +4,9 @@
 
 With a build once, run anywhere approach, ChRIS in a Box allows the ability to access and use ChRIS on Edge Computing Devices that are deployed in facilities who would like to leverage the capabilities of ChRIS. 
 
+![image](https://github.com/FNNDSC/ChRIS-in-a-box/assets/93591339/f30eb698-8b62-415f-9a8b-02f6d55d7645)
+
+
 [![MIT license](https://img.shields.io/github/license/FNNDSC/chris-in-a-box)](LICENSE)
 
 Run [_ChRIS_](https://chrisproject.org/) using [Podman](https://podman.io).
