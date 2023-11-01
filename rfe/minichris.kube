@@ -6,6 +6,9 @@ Requires=podman.service
 After=NetworkManager-wait-online.service
 Requires=NetworkManager-wait-online.service
 
+[Service]
+TimeoutStartSec = 900
+
 [Kube]
 Yaml=minichris-aio.yml
 
