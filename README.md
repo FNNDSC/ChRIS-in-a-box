@@ -180,6 +180,10 @@ via the name `host.containers.internal`, and we're able to talk to pfcon via the
 host port.
 
 
+#### Management Cluster
+https://console-openshift-console.apps.edge-mgr.nerc.mghpcc.org/
+
+
 #### Recommended Reading
 - https://docs.podman.io/en/stable/markdown/podman-kube-play.1.html#podman-kube-play-support
 - https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md
